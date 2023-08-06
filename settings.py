@@ -10,4 +10,4 @@ model = "gsdf/Counterfeit-V2.5"
 vae = "stabilityai/sd-vae-ft-mse"
 
 # cuda or cpu
-infer_on = "cuda"
+device = "cuda"
