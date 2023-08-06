@@ -1,0 +1,8 @@
+.venv/
+outputs/
+__pycache__/
+
+convert_vae_pt_to_diffusers.py
+vae/
+
+.vscode/
