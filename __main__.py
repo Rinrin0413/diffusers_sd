@@ -1,7 +1,7 @@
 from settings import device, vae, model
 from diffusers import StableDiffusionPipeline, AutoencoderKL
 import torch
-from config import prompt, negative_prompt, steps, width, height, scale
+from config import prompt, negative_prompt, steps, width, height, scale, seed
 from datetime import datetime
 
 print("Inference on", device.upper())
@@ -14,6 +14,11 @@ pipeline = StableDiffusionPipeline.from_pretrained(
     torch_dtype = torch_dtype
 ).to(device)
 
+generator = torch.Generator(device=device).manual_seed(seed)
+if seed == -1: generator = generator.manual_seed(torch.seed())
+
+print("Seed:", generator.initial_seed())
+
 image = pipeline(
     prompt = prompt,
     negative_prompt = negative_prompt,
@@ -21,6 +26,7 @@ image = pipeline(
     width = width,
     height = height,
     guidance_scale=scale,
+    generator=generator
 ).images[0]
 
 filename = f"outputs/{datetime.now().strftime('%Y%m%d%H%M%S%f')}.png"

@@ -11,3 +11,6 @@ width = 688
 height = 512
 
 scale = 7.0
+
+# -1 for random
+seed = -1
