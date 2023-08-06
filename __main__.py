@@ -23,4 +23,4 @@ image = pipeline(
 filename = f"outputs/{datetime.now().strftime('%Y%m%d%H%M%S%f')}.png"
 image.save(filename)
 
-print(f"Done: " + filename)
+print("Done:", filename)
