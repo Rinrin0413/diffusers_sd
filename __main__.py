@@ -1,4 +1,4 @@
-from settings import device, vae, model
+from settings import device, repo, vae
 from diffusers import StableDiffusionPipeline, AutoencoderKL
 import torch
 from config import prompt, negative_prompt, steps, width, height, scale, seed
@@ -7,9 +7,14 @@ from datetime import datetime
 print("Inference on", device.upper())
 
 torch_dtype = torch.float16 if device == "cuda" else torch.float32
-vae = AutoencoderKL.from_pretrained(vae, torch_dtype=torch_dtype).to(device)
+if vae == "auto":
+    vae = AutoencoderKL.from_pretrained(
+        repo, subfolder="vae", torch_dtype=torch_dtype
+    ).to(device)
+else:
+    vae = AutoencoderKL.from_pretrained(vae, torch_dtype=torch_dtype).to(device)
 pipeline = StableDiffusionPipeline.from_pretrained(
-    model, vae=vae, torch_dtype=torch_dtype
+    repo, vae=vae, torch_dtype=torch_dtype
 ).to(device)
 
 generator = torch.Generator(device=device).manual_seed(seed)
