@@ -4,5 +4,6 @@ __pycache__/
 
 convert_vae_pt_to_diffusers.py
 vae/
+init_outputs.sh
 
 .vscode/
