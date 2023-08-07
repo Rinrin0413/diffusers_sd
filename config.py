@@ -13,8 +13,8 @@ steps = 12
 width = 688
 height = 512
 
-batch_count = 5
-batch_size = 4
+batch_count = 1
+batch_size = 1
 
 scale = 7.0
 
