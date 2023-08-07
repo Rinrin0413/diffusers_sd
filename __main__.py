@@ -37,6 +37,8 @@ if seed == -1:
 
 print("Seed:", generator.initial_seed())
 
+before = datetime.now()
+
 for i in range(batch_count):
     images = pipeline(
         prompt=[prompt] * batch_size,
@@ -52,5 +54,8 @@ for i in range(batch_count):
         filename = f"outputs/{datetime.now().strftime('%Y%m%d%H%M%S%f')}.png"
         image.save(filename)
         print("Saved", filename)
+
+after = datetime.now()
+print(f"Total generation time: {after - before}s")
 
 print("Done!")
