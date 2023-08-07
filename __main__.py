@@ -1,7 +1,17 @@
 from settings import device, repo, vae
 from diffusers import StableDiffusionPipeline, AutoencoderKL
 import torch
-from config import prompt, negative_prompt, steps, width, height, scale, seed
+from config import (
+    prompt,
+    negative_prompt,
+    steps,
+    width,
+    height,
+    batch_count,
+    batch_size,
+    scale,
+    seed,
+)
 from schedulers import scheduler
 from datetime import datetime
 
@@ -27,17 +37,20 @@ if seed == -1:
 
 print("Seed:", generator.initial_seed())
 
-image = pipeline(
-    prompt=prompt,
-    negative_prompt=negative_prompt,
-    num_inference_steps=steps,
-    width=width,
-    height=height,
-    guidance_scale=scale,
-    generator=generator,
-).images[0]
+for i in range(batch_count):
+    images = pipeline(
+        prompt=[prompt] * batch_size,
+        negative_prompt=[negative_prompt] * batch_size,
+        num_inference_steps=steps,
+        width=width,
+        height=height,
+        guidance_scale=scale,
+        generator=generator,
+    ).images
 
-filename = f"outputs/{datetime.now().strftime('%Y%m%d%H%M%S%f')}.png"
-image.save(filename)
+    for i, image in enumerate(images):
+        filename = f"outputs/{datetime.now().strftime('%Y%m%d%H%M%S%f')}.png"
+        image.save(filename)
+        print("Saved", filename)
 
-print("Done:", filename)
+print("Done!")

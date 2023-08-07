@@ -13,6 +13,9 @@ steps = 12
 width = 688
 height = 512
 
+batch_count = 5
+batch_size = 4
+
 scale = 7.0
 
 # -1 for random
