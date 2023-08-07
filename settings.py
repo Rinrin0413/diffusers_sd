@@ -1,5 +1,5 @@
 # ex:
-# "gsdf/Counterfeit-V2.5", "Linaqruf/anything-v3.0"
+# "gsdf/Counterfeit-V2.5", "Linaqruf/anything-v3.0", "Mitsua/mitsua-diffusion-one", "prompthero/openjourney"
 repo = "gsdf/Counterfeit-V2.5"
 
 # ex:
