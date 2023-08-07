@@ -4,6 +4,9 @@ prompt = """1girl, tokyo, night, city, street, lights, neon,
 negative_prompt = """nsfw, solo,
 (low quality,worst quality:1.4),lowres,cropped,watermark,signature,jpeg artifacts, missing fingers,bad hands,(bad anatomy),(inaccurate limb:1.2),bad composition,inaccurate eyes,extra digit,fewer digits,(extra arms:1.2)"""
 
+# See https://huggingface.co/docs/diffusers/v0.19.3/en/api/schedulers/overview#schedulers-summary
+sampler = "euler"
+
 steps = 12
 
 # Must be divisible by 8
